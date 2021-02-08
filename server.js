@@ -21,7 +21,7 @@ app.use(express.json());
 app.use((req, res, next) => {
     console.log(req.headers);
     console.log("going to next")
-    let allowedOrigin = ["http://localhost:3000", "https://dazzling-chandrasekhar-1ace87.netlify.app"]
+    let allowedOrigin = ["http://localhost:3000", "https://happy-wilson-7ab93e.netlify.app"]
     if (allowedOrigin.indexOf(req.headers.origin) != -1) {
         res.header("Access-Control-Allow-Origin", req.headers.origin);
         res.setHeader("Access-Control-Allow-Credentials", true);
