@@ -3,6 +3,7 @@ const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const path = require('path');
+var cookieParser = require('cookie-parser');
 
 
 const indexRouter = require("./routes/index/index")
@@ -14,7 +15,8 @@ app.set('port', port);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
