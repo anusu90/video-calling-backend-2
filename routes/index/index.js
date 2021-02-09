@@ -107,6 +107,28 @@ router.post("/login", async (req, res) => {
 
 })
 
+
+//LOGOUT BACKEND
+
+router.get("/logout", myAuth, (req, res) => {
+    try {
+
+        res.setHeader('Set-Cookie', cookie.serialize('myAgainJwt2', "invalid-cookie", {
+            httpOnly: true,
+            maxAge: 60 * 60 * 24 * 7, // 1 week,
+            sameSite: "none",
+            secure: true
+        }));
+        res.status(200).json({ message: "Logout Successful" })
+
+    } catch (err) {
+
+        res.status(500).json({ message: error })
+
+    }
+})
+
+
 router.get("/check", myAuth, (req, res) => {
     res.status(200).json({ message: "user is here" })
 })
