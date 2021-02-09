@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
                     secure: true
                 }))
 
-                res.status(200).json({ message: "login successful" })
+                res.status(200).json(user)
 
             } else {
                 res.status(500).json({ message: "Invalid Credentials. Please try again" })

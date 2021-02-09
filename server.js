@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
 app.use((req, res, next) => {
-    console.log(req.headers);
+    // console.log(req.headers);
     console.log("going to next")
     let allowedOrigin = ["http://localhost:3000", "https://happy-wilson-7ab93e.netlify.app"]
     if (allowedOrigin.indexOf(req.headers.origin) != -1) {

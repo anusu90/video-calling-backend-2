@@ -4,7 +4,7 @@ require('dotenv').config(path.join(__dirname, "../../.env"))
 
 function myAuth(req, res, next) {
 
-    console.log(req.headers)
+    // console.log(req.headers)
 
     if (req.headers.cookie) {
         try {
