@@ -11,7 +11,7 @@ function myAuth(req, res, next) {
             let jwtToBeVerfied = req.headers.cookie.split('=')[1];
             let verifiedUser = jwt.verify(jwtToBeVerfied, process.env.RANDOM_KEY_FOR_JWT)
             req.body.userID = verifiedUser.user._id;
-            console.log(verifiedUser.user._id);
+            console.log("bholenath", req.body.userID);
             next();
 
         } catch (error) {

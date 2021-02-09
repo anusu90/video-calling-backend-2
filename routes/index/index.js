@@ -113,7 +113,7 @@ router.post("/login", async (req, res) => {
 router.get("/logout", (req, res) => {
     try {
 
-        res.setHeader('Set-Cookie', cookie.serialize('myAgainJwt2', "invalid-cookie", {
+        res.setHeader('Set-Cookie', cookie.serialize('myAgainJwt3', "invalid-cookie", {
             httpOnly: true,
             maxAge: 60 * 60 * 24 * 7, // 1 week,
             sameSite: "none",
@@ -132,6 +132,8 @@ router.get("/logout", (req, res) => {
 router.get("/check", myAuth, async (req, res) => {
 
     try {
+
+        let userID = req.body.userID;
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
         await client.connect();
         let userDBCollection = client.db('video-calling-db').collection("users");
