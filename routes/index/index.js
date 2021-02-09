@@ -110,7 +110,7 @@ router.post("/login", async (req, res) => {
 
 //LOGOUT BACKEND
 
-router.get("/logout", myAuth, (req, res) => {
+router.get("/logout", (req, res) => {
     try {
 
         res.setHeader('Set-Cookie', cookie.serialize('myAgainJwt2', "invalid-cookie", {
@@ -129,8 +129,23 @@ router.get("/logout", myAuth, (req, res) => {
 })
 
 
-router.get("/check", myAuth, (req, res) => {
-    res.status(200).json({ message: "user is here" })
+router.get("/check", myAuth, async (req, res) => {
+
+    try {
+        const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+        await client.connect();
+        let userDBCollection = client.db('video-calling-db').collection("users");
+        let user = await userDBCollection.findOne({
+            _id: mongodb.ObjectID(userID)
+        });
+        res.status(200).json(user)
+
+    } catch (error) {
+
+        res.status(500).json({ message: error })
+
+    }
+
 })
 
 module.exports = router; 

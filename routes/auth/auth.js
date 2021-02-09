@@ -16,12 +16,11 @@ function myAuth(req, res, next) {
 
         } catch (error) {
             res.status(404).json({ message: "Unauthorized Access" })
-            next();
         }
 
     } else {
         console.log("no cookie found")
-        next();
+        res.status(404).json({ message: "Unauthorized Access" })
     }
 }
 
